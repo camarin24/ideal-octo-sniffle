@@ -1,5 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import { ParsedUrlQuery } from "querystring";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
 
 type Callback = (
@@ -10,7 +9,6 @@ type Callback = (
 
 type AuthorizeProps = {
     context: GetServerSidePropsContext
-
 }
 
 
