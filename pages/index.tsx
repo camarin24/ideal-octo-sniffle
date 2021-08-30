@@ -4,19 +4,18 @@ import Link from 'next/link'
 import Date from '../components/elements/date'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import { requirePageAuth } from '../lib/auth/auth'
+import { Session } from '../types/session'
 
 type HomeProps = {
-    allPostsData: Array<{ date: string, title: string, id: string }>
+    allPostsData: Array<{ date: string, title: string, id: string }>,
+    user: Session
 }
 
-const Home: React.FunctionComponent<HomeProps> = ({ allPostsData }) => {
+const Home: React.FunctionComponent<HomeProps> = ({ user }) => {
     return (
         <Layout home>
-            <Head>
-                <title>{ siteTitle }</title>
-            </Head>
             <section >
-                <p>[Your Self Introduction]</p>
+                <p>{ user.accessToken }</p>
                 <p>
                     (This is a sample website - you’ll be building a site like this in{ ' ' }
                     <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
@@ -32,7 +31,9 @@ const Home: React.FunctionComponent<HomeProps> = ({ allPostsData }) => {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = requirePageAuth(async (ctx) => {
-    return { props: {} }
+export const getServerSideProps: GetServerSideProps = requirePageAuth(async (ctx, session) => {
+    console.log(session);
+
+    return { props: { user: session } }
 })
 export default Home;

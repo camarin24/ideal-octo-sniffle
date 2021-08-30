@@ -1,24 +1,17 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-
+import { getSession } from 'next-auth/client'
+import { ParsedUrlQuery } from "querystring";
+import { Session } from "../../types/session";
 
 type Callback = (
-    ctx: GetServerSidePropsContext,
-    user: any
+    ctx: GetServerSideProps<ParsedUrlQuery> | GetServerSidePropsContext<ParsedUrlQuery>,
+    session: Session
 ) => any
 
-
-type AuthorizeProps = {
-    context: GetServerSidePropsContext
-}
-
-
-export function requirePageAuth<P>(getServerSidePropsFunc?: GetServerSideProps): GetServerSideProps {
+export function requirePageAuth<P>(getServerSidePropsFunc?: Callback): GetServerSideProps {
     const withPrivateSSP: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-        const _isAuthenticated = false;
-
-        // If not authenticated, we return a redirect object that instructs
-        // Next.js to redirect to our login page.
-        if (!_isAuthenticated) {
+        const session = await getSession(ctx);
+        if (!session) {
             return {
                 redirect: {
                     destination: `/login`,
@@ -26,9 +19,8 @@ export function requirePageAuth<P>(getServerSidePropsFunc?: GetServerSideProps):
                 },
             };
         }
-
         if (getServerSidePropsFunc) {
-            return await getServerSidePropsFunc(ctx);
+            return await getServerSidePropsFunc(ctx, session.user as Session);
         }
         return { props: {} };
     };
