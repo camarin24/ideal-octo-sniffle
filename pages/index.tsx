@@ -1,7 +1,6 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layouts/layout'
+import Layout from '@components/templates/layout'
 import Link from 'next/link'
-import Date from '../components/elements/date'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import { requirePageAuth } from '../lib/auth/auth'
 import { Session } from '../types/session'
@@ -11,11 +10,10 @@ type HomeProps = {
     user: Session
 }
 
-const Home: React.FunctionComponent<HomeProps> = ({ user }) => {
+const Home: React.FunctionComponent<HomeProps> = () => {
     return (
         <Layout home>
             <section >
-                <p>{ user.accessToken }</p>
                 <p>
                     (This is a sample website - you’ll be building a site like this in{ ' ' }
                     <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
@@ -31,9 +29,9 @@ const Home: React.FunctionComponent<HomeProps> = ({ user }) => {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = requirePageAuth(async (ctx, session) => {
-    console.log(session);
+// export const getServerSideProps: GetServerSideProps = requirePageAuth(async (ctx, session) => {
+//     console.log(session);
 
-    return { props: { user: session } }
-})
+//     return { props: { user: session } }
+// })
 export default Home;

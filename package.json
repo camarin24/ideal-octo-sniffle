@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.4",
     "@tailwindcss/forms": "^0.3.3",
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",

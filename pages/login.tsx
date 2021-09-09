@@ -2,7 +2,7 @@ import { GetServerSidePropsContext } from "next";
 import { getCsrfToken, getSession } from "next-auth/client";
 import React from "react";
 import ErrorAlert from "../components/elements/error-alert";
-import Layout from "../components/layouts/layout";
+import Layout from "@components/templates/simple-layout";
 
 export interface LoginProps {
     csrfToken: string,
@@ -14,7 +14,7 @@ const Login: React.FunctionComponent<LoginProps> = ({ csrfToken, error }) => {
     return (
         <Layout home={ false } >
             < >
-                <div className="max-w-sm mx-auto shadow-lg bg-white dark:bg-gray-800 rounded-lg">
+                <div className="max-w-sm mx-auto shadow-md bg-white dark:bg-gray-800 rounded-lg">
                     <ErrorAlert visibleError={ error != null } />
                     <div className="px-6 py-4">
                         <h2 className="text-3xl font-bold text-center text-gray-700 dark:text-white">Brand</h2>

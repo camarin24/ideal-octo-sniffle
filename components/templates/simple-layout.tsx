@@ -1,17 +1,15 @@
-import ThemeChanger from '../elements/themeChanger';
+import ThemeChanger from '@components/elements/theme-changer';
 
-export default function Layout({
-    children,
-    home
-}: {
+export default function SimpleLayout({ children, home }: {
     children: React.ReactNode
     home?: boolean
 }) {
+
     return (
-        <div className="w-full overflow-hidden bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-wrap content-center">
+        <div className="w-full overflow-hidden bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-wrap content-center">
             <ThemeChanger />
             { children }
-            <footer className="flex flex-col items-center justify-between px-6 py-4 bg-white dark:bg-gray-800 sm:flex-row absolute w-full bottom-0">
+            <footer className="flex flex-col items-center justify-between px-6 py-4 bg-gray-100 dark:bg-gray-800 sm:flex-row absolute w-full bottom-0">
                 <a href="#" className="text-xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300">Brand</a>
                 <p className="py-2 text-gray-800 dark:text-white sm:py-0">All rights reserved</p>
                 <div className="flex -mx-2">
