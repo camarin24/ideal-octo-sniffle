@@ -12,7 +12,7 @@ type HomeProps = {
 
 const Home: React.FunctionComponent<HomeProps> = () => {
     return (
-        <Layout home>
+        <Layout>
             <section >
                 <p>
                     (This is a sample website - you’ll be building a site like this in{ ' ' }

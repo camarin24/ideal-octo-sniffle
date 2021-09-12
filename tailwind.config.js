@@ -11,6 +11,9 @@ module.exports = {
                 cyan: colors.cyan
             }
         },
+        fontFamily: {
+            'sans':['Raleway','sans-serif']
+        }
     },
     variants: {
         extend: {},

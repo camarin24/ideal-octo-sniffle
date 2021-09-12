@@ -1,0 +1,8 @@
+.searchInput{
+    transition: width .3s;
+    animation: ease-in-out;
+}
+
+.closedSideBar{
+    margin-left: -219.4px;
+}
